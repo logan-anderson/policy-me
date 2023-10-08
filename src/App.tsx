@@ -4,6 +4,7 @@ import { useAttributes } from "./hooks/attributes";
 import { classMeetRequirements } from "./lib/classMeetRequirements";
 import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from "./consts";
 import { useEffect, useState } from "react";
+import { StatDisplay } from "./components/statDisplay";
 
 function App() {
   const [attributes, updateAttribute] = useAttributes();
@@ -13,6 +14,10 @@ function App() {
       met: false,
     }))
   );
+  const [selectedClass, setSelectedClass] = useState<
+    CharacterClass | undefined
+  >();
+
   useEffect(() => {
     // TODO: cloud add a debounce here if preformance becomes an issue
     updateClassList(() => {
@@ -58,18 +63,24 @@ function App() {
           </p>
           {classList.map((currentClass) => {
             return (
-              <div
+              <button
                 style={{
+                  border: "none",
+                  backgroundColor: "transparent",
                   // Green means the class requirements are met
                   color: currentClass.met ? "green" : "red",
+                }}
+                onClick={() => {
+                  setSelectedClass(currentClass.name as CharacterClass);
                 }}
                 key={currentClass.name}
               >
                 {currentClass.name}
-              </div>
+              </button>
             );
           })}
         </div>
+        {selectedClass && <StatDisplay playerClass={selectedClass} />}
       </section>
     </div>
   );
