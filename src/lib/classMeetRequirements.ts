@@ -1,7 +1,5 @@
-import { CLASS_LIST, ATTRIBUTE_LIST } from "../consts";
-import { Attributes } from "../types";
-
-type CharacterClass = keyof typeof CLASS_LIST;
+import { CLASS_LIST } from "../consts";
+import { Attributes, CharacterClass } from "../types";
 
 // This function will take in a class and return true of the requirements are met
 export const classMeetRequirements = (

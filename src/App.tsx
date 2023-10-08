@@ -1,4 +1,5 @@
 import "./App.css";
+import { CharacterClass } from "./types";
 import { useAttributes } from "./hooks/attributes";
 import { classMeetRequirements } from "./lib/classMeetRequirements";
 import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from "./consts";
@@ -17,7 +18,7 @@ function App() {
     updateClassList(() => {
       return Object.keys(CLASS_LIST).map((className) => ({
         name: className,
-        met: classMeetRequirements(className, attributes),
+        met: classMeetRequirements(className as CharacterClass, attributes),
       }));
     });
   }, [JSON.stringify(attributes), updateClassList, CLASS_LIST]);
