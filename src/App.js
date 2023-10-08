@@ -1,6 +1,6 @@
 import "./App.css";
 import { useAttributes } from "./hooks/attributes";
-import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from "./consts.js";
+import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from "./consts";
 
 function App() {
   const [attributes, updateAttribute] = useAttributes();
@@ -11,14 +11,25 @@ function App() {
       </header>
       <section className="App-section">
         {ATTRIBUTE_LIST.map((attribute) => {
+          console.log({ attribute });
+          console.log(attributes);
           return (
             <div key={attribute}>
-              {attribute}:
-              <input
-                type="number"
-                value={attributes[attribute]}
-                onChange={(e) => updateAttribute(attribute, e.target.value)}
-              />
+              {attribute} :{attributes[attribute]}
+              <button
+                onClick={() => {
+                  updateAttribute(attribute, attributes[attribute] + 1);
+                }}
+              >
+                +
+              </button>
+              <button
+                onClick={() => {
+                  updateAttribute(attribute, attributes[attribute] - 1);
+                }}
+              >
+                -
+              </button>
             </div>
           );
         })}
