@@ -54,8 +54,14 @@ function App() {
       <header className="App-header">
         <h1>React Coding Exercise</h1>
       </header>
-      <section className="App-section">
+      <section
+        className="App-section"
+        style={{
+          padding: "3rem",
+        }}
+      >
         <div>
+          <h2>Attributes</h2>
           {ATTRIBUTE_LIST.map((attribute) => {
             return (
               <div key={attribute}>
@@ -103,7 +109,14 @@ function App() {
             );
           })}
         </div>
-        {selectedClass && <StatDisplay playerClass={selectedClass} />}
+        {selectedClass && (
+          <StatDisplay
+            playerClass={selectedClass}
+            close={() => {
+              setSelectedClass(undefined);
+            }}
+          />
+        )}
 
         <div>
           <h2>Skills</h2>
