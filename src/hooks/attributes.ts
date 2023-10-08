@@ -1,11 +1,5 @@
 import { useState } from "react";
-import { ATTRIBUTE_LIST } from "../consts";
-
-type Keys = (typeof ATTRIBUTE_LIST)[number];
-
-type Attributes = {
-  [key in Keys]: number;
-};
+import { Attributes, AttributesKeys } from "../types";
 
 export function useAttributes() {
   const initial: Attributes = {
@@ -17,7 +11,7 @@ export function useAttributes() {
     Charisma: 0,
   };
   const [attributes, setAttributes] = useState<Attributes>(initial);
-  const updateAttribute = (attribute: Keys, value: number) => {
+  const updateAttribute = (attribute: AttributesKeys, value: number) => {
     setAttributes((prev) => ({ ...prev, [attribute]: value }));
   };
   return [attributes, updateAttribute] as const;
