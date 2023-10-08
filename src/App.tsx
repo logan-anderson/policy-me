@@ -5,6 +5,7 @@ import { classMeetRequirements } from "./lib/classMeetRequirements";
 import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from "./consts";
 import { useEffect, useState } from "react";
 import { StatDisplay } from "./components/statDisplay";
+import { calculateAbilityModifier } from "./lib/calculateAbilityModifier";
 
 function App() {
   const [attributes, updateAttribute] = useAttributes();
@@ -37,7 +38,8 @@ function App() {
           {ATTRIBUTE_LIST.map((attribute) => {
             return (
               <div key={attribute}>
-                {attribute} :{attributes[attribute]}
+                {attribute} :{attributes[attribute]} (Modifier:{" "}
+                {calculateAbilityModifier(attributes[attribute])})
                 <button
                   onClick={() => {
                     updateAttribute(attribute, attributes[attribute] + 1);
